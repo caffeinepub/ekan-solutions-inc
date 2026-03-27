@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   ArrowRight,
   BarChart3,
+  BookOpen,
   CheckCircle2,
   ChevronRight,
   ClipboardList,
@@ -25,6 +26,7 @@ import {
   Rocket,
   Search,
   Shield,
+  Star,
   ThumbsUp,
   Twitter,
   Users,
@@ -206,6 +208,47 @@ const PROCESS_STEPS = [
     title: "Deploy",
     desc: "Launch with confidence using blue-green deployments, monitoring, and dedicated support.",
   },
+];
+
+const ABOUT_VALUES = [
+  {
+    icon: Shield,
+    title: "Integrity",
+    desc: "We build every relationship—clients, partners, vendors, and community—with unwavering transparency and trust.",
+  },
+  {
+    icon: BookOpen,
+    title: "Knowledge",
+    desc: "We treat every engagement as a learning opportunity, keeping our team and clients ahead of the technology curve.",
+  },
+  {
+    icon: Star,
+    title: "Commitment",
+    desc: "We are dedicated to exceeding expectations, delivering results that keep our clients well ahead of the competition.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Innovation",
+    desc: "We constantly evolve our services to deliver the most complete, usable, and effective IT solutions in the world.",
+  },
+  {
+    icon: Users,
+    title: "Teamwork",
+    desc: "Collaboration is our way of working—partnering closely with clients, internal teams, and stakeholders every day.",
+  },
+];
+
+const INDUSTRIES = [
+  "Healthcare",
+  "Insurance",
+  "Environment",
+  "Food & Catering",
+  "Transportation",
+  "Legal",
+  "Manufacturing",
+  "State & Local Government",
+  "Finance",
+  "Technology",
 ];
 
 // ──────────────────────────────────────────────
@@ -519,7 +562,7 @@ function HeroSection() {
 
 function IntroCards() {
   return (
-    <section id="about" className="relative z-10 bg-white pb-0">
+    <section className="relative z-10 bg-white pb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2">
         <div className="grid md:grid-cols-3 gap-6">
           {[
@@ -561,6 +604,149 @@ function IntroCards() {
               </p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  return (
+    <section id="about" className="py-24 bg-white" data-ocid="about.section">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header */}
+        <div className="text-center mb-16 fade-in-up">
+          <span className="inline-block text-[#1ABC9C] font-semibold text-sm uppercase tracking-widest mb-3">
+            Who We Are
+          </span>
+          <h2 className="text-4xl font-extrabold text-[#0A3D62] mb-4">
+            About Ekan Solutions
+          </h2>
+          <p className="text-gray-500 max-w-xl mx-auto">
+            A technology partner built on integrity, innovation, and 15+ years
+            of enterprise expertise.
+          </p>
+        </div>
+
+        {/* Two-column layout */}
+        <div className="grid lg:grid-cols-2 gap-16 mb-14">
+          {/* LEFT — Company Story */}
+          <div className="fade-in-up">
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#1ABC9C] mb-4">
+              Our Story
+            </span>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Founded in 2010, Ekan Solutions Inc. is a Maryland-based software
+              consulting and development firm specializing in enterprise IT
+              services. We blend strategic thinking with deep technical
+              expertise to tackle the most complex business challenges.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              Our team brings over 35 years of combined experience, supported by
+              a dedicated 24/7 offshore development center. We serve clients
+              across healthcare, insurance, government, finance, and
+              more—delivering solutions that are scalable, secure, and built to
+              last.
+            </p>
+
+            {/* Mission block */}
+            <div
+              className="rounded-2xl p-6 text-white mt-6"
+              style={{ backgroundColor: "#0A3D62" }}
+            >
+              <span className="inline-block text-[#1ABC9C] text-xs font-bold uppercase tracking-widest mb-2">
+                Our Mission
+              </span>
+              <p className="text-white/85 leading-relaxed text-sm">
+                To empower organizations with cutting-edge technology solutions,
+                expert services, and continuous education—enabling superior
+                performance and lasting competitive advantage.
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT — Our Values */}
+          <div className="fade-in-up" style={{ transitionDelay: "0.15s" }}>
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#1ABC9C] mb-4">
+              Our Values
+            </span>
+            <div className="grid grid-cols-2 gap-4">
+              {ABOUT_VALUES.map((value, i) => (
+                <div
+                  key={value.title}
+                  className={`border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow duration-300 ${
+                    i === 4
+                      ? "col-span-2 sm:col-span-1 sm:col-start-1 md:col-span-2 lg:col-span-1 lg:col-start-1"
+                      : ""
+                  }`}
+                  data-ocid={`about.item.${i + 1}`}
+                >
+                  <div className="w-9 h-9 rounded-full bg-[#1ABC9C]/15 flex items-center justify-center mb-3">
+                    <value.icon className="w-4 h-4 text-[#1ABC9C]" />
+                  </div>
+                  <h4 className="font-bold text-[#0A3D62] text-sm mb-1.5">
+                    {value.title}
+                  </h4>
+                  <p className="text-gray-500 text-xs leading-relaxed">
+                    {value.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Industries Served */}
+        <div className="fade-in-up mb-10" style={{ transitionDelay: "0.2s" }}>
+          <div className="text-center mb-5">
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#1ABC9C]">
+              Industries We Serve
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {INDUSTRIES.map((industry) => (
+              <span
+                key={industry}
+                className="border rounded-full px-4 py-1.5 text-sm font-medium cursor-default transition-all duration-200 hover:text-white"
+                style={{
+                  borderColor: "rgba(10,61,98,0.2)",
+                  color: "#0A3D62",
+                  backgroundColor: "rgba(10,61,98,0.05)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor =
+                    "#0A3D62";
+                  (e.currentTarget as HTMLElement).style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor =
+                    "rgba(10,61,98,0.05)";
+                  (e.currentTarget as HTMLElement).style.color = "#0A3D62";
+                }}
+              >
+                {industry}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Our Promise */}
+        <div
+          className="fade-in-up rounded-2xl p-8 text-center bg-gray-50"
+          style={{ transitionDelay: "0.3s" }}
+        >
+          <h3 className="text-2xl font-extrabold text-[#0A3D62] mb-1">
+            Our Promise to You
+          </h3>
+          <div
+            className="w-12 h-1 rounded-full mx-auto mb-4"
+            style={{ backgroundColor: "#1ABC9C" }}
+          />
+          <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            To provide clients worldwide with best-in-class solutions, services,
+            and expertise. Every interaction is guided by care, respect, and a
+            relentless focus on results.
+          </p>
         </div>
       </div>
     </section>
@@ -1234,6 +1420,7 @@ export default function App() {
       <main>
         <HeroSection />
         <IntroCards />
+        <AboutSection />
         <ServicesSection />
         <WhyChooseUs />
         <ServiceDetails />
