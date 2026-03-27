@@ -1,27 +1,33 @@
-# Ekan Solutions Inc.
+# Ekan Solutions Inc. — Services Landing Page
 
 ## Current State
-Single-page website with sections: Hero, IntroCards (anchored as #about), Services, WhyChooseUs, ServiceDetails, Process, CTA, Contact, Footer. The `#about` anchor currently points to the IntroCards (3 small cards). There is no dedicated About page or section with full company story, values, mission, or industries.
+- App.tsx has a simple page state: `"home" | "about"`
+- AboutPage.tsx is a standalone full landing page component with setPage prop
+- Header nav links are anchor links (#services etc.) on home, but "About" triggers page change
+- No dedicated Services page exists yet
 
 ## Requested Changes (Diff)
 
 ### Add
-- A full `AboutSection` component placed after `IntroCards`, sharing the `#about` anchor (move anchor there)
-- Content: updated company overview (founded 2010, Maryland HQ, not California), mission statement, 5 core values (Integrity, Knowledge, Commitment, Innovation, Teamwork) with icons and descriptions, Our Promise statement, industries served grid, and company stats bar
-- Services updated context: Cybersecurity, Project Management, Full Stack Development, AWS Cloud Solutions, Java Development
-- A two-column layout: left side with company story + mission, right side with values grid
-- Industries served section with badge/chip list (healthcare, insurance, environment, food & catering, transportation, legal, manufacturing, state & local government)
+- `src/frontend/src/components/ServicesPage.tsx`: Full dedicated Services landing page with:
+  1. Hero section — bold headline, subheadline, CTA button ("Get a Free Consultation")
+  2. Services overview grid — 5 service cards (Cybersecurity, Project Management, Full Stack Dev, AWS Cloud, Java Development) with icons, descriptions, hover lift
+  3. Deep-dive sections — one detailed section per service with bullet capabilities, use cases, and a side icon/visual
+  4. Technology stack badges section — logos/tags for key tech used
+  5. Process / How We Work section — 5-step flow (Analyze → Plan → Build → Secure → Deploy)
+  6. Testimonials / Client Success strip (placeholder stats: 500+ projects, 15+ years, 100+ clients, 24/7 support)
+  7. CTA banner — "Ready to Get Started? Contact Us Today"
 
 ### Modify
-- Move `id="about"` from `IntroCards` section to the new `AboutSection`
-- Update IntroCards to not carry the about anchor
-- Keep all existing sections intact
+- `App.tsx`: Extend page state to `"home" | "about" | "services"`, add ServicesPage render branch, pass setPage
+- `App.tsx` Header / NAV_LINKS: "Services" nav item triggers `setPage("services")` instead of anchor scroll
 
 ### Remove
 - Nothing removed
 
 ## Implementation Plan
-1. Create `AboutSection` component in App.tsx with updated content
-2. Add it between IntroCards and ServicesSection in the App render
-3. Move `id="about"` to the new section
-4. Include values grid with 5 values + icons, mission statement, industries served chips, and a decorative stats band
+1. Create ServicesPage.tsx with all sections above, matching existing brand colors (#0A3D62 navy, #1ABC9C teal), Inter font, fade-in-up animations
+2. Update App.tsx page state type to include "services"
+3. Add ServicesPage import and render branch in App
+4. Update Header so clicking "Services" nav item calls setPage("services") and clicking "Home" / logo returns to home
+5. Validate and deploy

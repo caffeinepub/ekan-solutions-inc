@@ -1,3 +1,5 @@
+import AboutPage from "@/components/AboutPage";
+import ServicesPage from "@/components/ServicesPage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -255,7 +257,9 @@ const INDUSTRIES = [
 // Components
 // ──────────────────────────────────────────────
 
-function Header() {
+function Header({
+  setPage,
+}: { setPage: (p: "home" | "about" | "services") => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -274,9 +278,13 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#home"
+          <button
+            type="button"
             className="flex items-center gap-2"
+            onClick={() => {
+              setPage("home");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             data-ocid="nav.link"
           >
             <div className="w-9 h-9 bg-navy rounded flex items-center justify-center">
@@ -288,19 +296,34 @@ function Header() {
               </span>
               <span className="text-xs text-gray-500 leading-none">Inc.</span>
             </div>
-          </a>
+          </button>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-7">
             {NAV_LINKS.map((link) => (
-              <a
+              <button
                 key={link.label}
-                href={link.href}
+                type="button"
                 className="text-sm font-semibold text-gray-700 hover:text-[#0A3D62] transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#1ABC9C] hover:after:w-full after:transition-all after:duration-300"
+                onClick={() => {
+                  if (link.label === "About") {
+                    setPage("about");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  } else if (link.label === "Services") {
+                    setPage("services");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  } else {
+                    setPage("home");
+                    setTimeout(() => {
+                      const el = document.querySelector(link.href);
+                      el?.scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                  }
+                }}
                 data-ocid="nav.link"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
           </nav>
 
@@ -353,15 +376,30 @@ function Header() {
           <div className="lg:hidden mt-4 pb-4 border-t border-gray-100">
             <nav className="flex flex-col gap-3 mt-4">
               {NAV_LINKS.map((link) => (
-                <a
+                <button
                   key={link.label}
-                  href={link.href}
-                  className="text-sm font-semibold text-gray-700 hover:text-[#0A3D62] py-1"
-                  onClick={() => setMenuOpen(false)}
+                  type="button"
+                  className="text-sm font-semibold text-gray-700 hover:text-[#0A3D62] py-1 text-left"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    if (link.label === "About") {
+                      setPage("about");
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    } else if (link.label === "Services") {
+                      setPage("services");
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    } else {
+                      setPage("home");
+                      setTimeout(() => {
+                        const el = document.querySelector(link.href);
+                        el?.scrollIntoView({ behavior: "smooth" });
+                      }, 100);
+                    }
+                  }}
                   data-ocid="nav.link"
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
               <div className="flex flex-col gap-1 mt-2">
                 <a
@@ -1412,21 +1450,30 @@ function Footer() {
 // App
 // ──────────────────────────────────────────────
 export default function App() {
+  const [page, setPage] = useState<"home" | "about" | "services">("home");
   useScrollAnimation();
 
   return (
     <div className="min-h-screen font-sans">
-      <Header />
+      <Header setPage={setPage} />
       <main>
-        <HeroSection />
-        <IntroCards />
-        <AboutSection />
-        <ServicesSection />
-        <WhyChooseUs />
-        <ServiceDetails />
-        <ProcessSection />
-        <CTABanner />
-        <ContactSection />
+        {page === "services" ? (
+          <ServicesPage setPage={setPage} />
+        ) : page === "about" ? (
+          <AboutPage setPage={setPage} />
+        ) : (
+          <>
+            <HeroSection />
+            <IntroCards />
+            <AboutSection />
+            <ServicesSection />
+            <WhyChooseUs />
+            <ServiceDetails />
+            <ProcessSection />
+            <CTABanner />
+            <ContactSection />
+          </>
+        )}
       </main>
       <Footer />
     </div>
