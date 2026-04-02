@@ -1,5 +1,12 @@
+import AWSCloudPage from "@/components/AWSCloudPage";
 import AboutPage from "@/components/AboutPage";
+import CybersecurityPage from "@/components/CybersecurityPage";
+import FullStackPage from "@/components/FullStackPage";
+import JavaDevelopmentPage from "@/components/JavaDevelopmentPage";
+import ProjectManagementPage from "@/components/ProjectManagementPage";
+import QATestingPage from "@/components/QATestingPage";
 import ServicesPage from "@/components/ServicesPage";
+import SolutionsPage from "@/components/SolutionsPage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -259,7 +266,21 @@ const INDUSTRIES = [
 
 function Header({
   setPage,
-}: { setPage: (p: "home" | "about" | "services") => void }) {
+}: {
+  setPage: (
+    p:
+      | "home"
+      | "about"
+      | "services"
+      | "solutions"
+      | "cybersecurity"
+      | "projectmanagement"
+      | "fullstack"
+      | "awscloud"
+      | "javadevelopment"
+      | "qatesting",
+  ) => void;
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -287,9 +308,11 @@ function Header({
             }}
             data-ocid="nav.link"
           >
-            <div className="w-9 h-9 bg-navy rounded flex items-center justify-center">
-              <Shield className="w-5 h-5 text-white" />
-            </div>
+            <img
+              src="/assets/generated/es-logo-icon-transparent.dim_200x200.png"
+              alt="ES Logo"
+              className="w-10 h-10 object-contain"
+            />
             <div>
               <span className="font-bold text-lg text-navy leading-none block">
                 Ekan Solutions
@@ -311,6 +334,9 @@ function Header({
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   } else if (link.label === "Services") {
                     setPage("services");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  } else if (link.label === "Solutions") {
+                    setPage("solutions");
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   } else {
                     setPage("home");
@@ -387,6 +413,9 @@ function Header({
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     } else if (link.label === "Services") {
                       setPage("services");
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    } else if (link.label === "Solutions") {
+                      setPage("solutions");
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     } else {
                       setPage("home");
@@ -1300,11 +1329,13 @@ function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-[#1ABC9C] rounded flex items-center justify-center">
-                <Shield className="w-5 h-5 text-white" />
-              </div>
+              <img
+                src="/assets/generated/es-logo-icon-transparent.dim_200x200.png"
+                alt="ES Logo"
+                className="w-10 h-10 object-contain"
+              />
               <div>
-                <span className="font-bold text-lg leading-none block">
+                <span className="font-bold text-lg text-white leading-none block">
                   Ekan Solutions
                 </span>
                 <span className="text-xs text-white/50 leading-none">Inc.</span>
@@ -1450,7 +1481,18 @@ function Footer() {
 // App
 // ──────────────────────────────────────────────
 export default function App() {
-  const [page, setPage] = useState<"home" | "about" | "services">("home");
+  const [page, setPage] = useState<
+    | "home"
+    | "about"
+    | "services"
+    | "solutions"
+    | "cybersecurity"
+    | "projectmanagement"
+    | "fullstack"
+    | "awscloud"
+    | "javadevelopment"
+    | "qatesting"
+  >("home");
   useScrollAnimation();
 
   return (
@@ -1461,6 +1503,20 @@ export default function App() {
           <ServicesPage setPage={setPage} />
         ) : page === "about" ? (
           <AboutPage setPage={setPage} />
+        ) : page === "solutions" ? (
+          <SolutionsPage setPage={setPage} />
+        ) : page === "cybersecurity" ? (
+          <CybersecurityPage setPage={setPage} />
+        ) : page === "projectmanagement" ? (
+          <ProjectManagementPage setPage={setPage} />
+        ) : page === "fullstack" ? (
+          <FullStackPage setPage={setPage} />
+        ) : page === "awscloud" ? (
+          <AWSCloudPage setPage={setPage} />
+        ) : page === "javadevelopment" ? (
+          <JavaDevelopmentPage setPage={setPage} />
+        ) : page === "qatesting" ? (
+          <QATestingPage setPage={setPage} />
         ) : (
           <>
             <HeroSection />

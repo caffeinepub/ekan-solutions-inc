@@ -20,7 +20,17 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 
-type PageType = "home" | "about" | "services";
+type PageType =
+  | "home"
+  | "about"
+  | "services"
+  | "solutions"
+  | "cybersecurity"
+  | "projectmanagement"
+  | "fullstack"
+  | "awscloud"
+  | "javadevelopment"
+  | "qatesting";
 
 interface ServicesPageProps {
   setPage: (p: PageType) => void;
@@ -51,6 +61,7 @@ const SERVICES_OVERVIEW = [
     desc: "Protect your organization with enterprise-grade threat detection, compliance management, and proactive security monitoring.",
     color: "#0A3D62",
     anchor: "#cybersecurity",
+    page: "cybersecurity" as PageType,
   },
   {
     icon: ClipboardList,
@@ -58,6 +69,7 @@ const SERVICES_OVERVIEW = [
     desc: "Drive successful outcomes with Agile, PMBOK, and hybrid methodologies—on time, within budget, aligned to your strategy.",
     color: "#1ABC9C",
     anchor: "#project-management",
+    page: "projectmanagement" as PageType,
   },
   {
     icon: Code2,
@@ -65,6 +77,7 @@ const SERVICES_OVERVIEW = [
     desc: "End-to-end web and application development using modern frameworks—React, Node.js, Spring Boot, and beyond.",
     color: "#0A3D62",
     anchor: "#fullstack",
+    page: "fullstack" as PageType,
   },
   {
     icon: Cloud,
@@ -72,6 +85,7 @@ const SERVICES_OVERVIEW = [
     desc: "Architect, migrate, and optimize workloads on AWS. Reduce costs while scaling with confidence and reliability.",
     color: "#1ABC9C",
     anchor: "#aws",
+    page: "awscloud" as PageType,
   },
   {
     icon: Coffee,
@@ -79,6 +93,15 @@ const SERVICES_OVERVIEW = [
     desc: "Build robust, high-performance enterprise applications with Java EE, Spring, and microservices architectures.",
     color: "#0A3D62",
     anchor: "#java",
+    page: "javadevelopment" as PageType,
+  },
+  {
+    icon: CheckCircle2,
+    title: "Quality Assurance / Testing",
+    desc: "End-to-end QA services including manual, automated, performance, and security testing to ship with confidence.",
+    color: "#1ABC9C",
+    anchor: "#qatesting",
+    page: "qatesting" as PageType,
   },
 ];
 
@@ -342,10 +365,10 @@ export default function ServicesPage({ setPage }: ServicesPageProps) {
                   <button
                     type="button"
                     className="mt-5 flex items-center gap-1.5 text-[#1ABC9C] font-semibold text-sm hover:gap-3 transition-all"
-                    onClick={() => scrollTo(svc.anchor.replace("#", ""))}
+                    onClick={() => setPage(svc.page)}
                     data-ocid={`services.overview.link.${i + 1}`}
                   >
-                    Learn More <ArrowRight className="w-4 h-4" />
+                    View Details <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               );
