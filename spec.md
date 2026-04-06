@@ -1,33 +1,30 @@
-# Ekan Solutions Inc. — Services Landing Page
+# Ekan Solutions Inc.
 
 ## Current State
-- App.tsx has a simple page state: `"home" | "about"`
-- AboutPage.tsx is a standalone full landing page component with setPage prop
-- Header nav links are anchor links (#services etc.) on home, but "About" triggers page change
-- No dedicated Services page exists yet
+The site has 9 pages: Home, About, Services, Solutions, and 5 individual service landing pages (Cybersecurity, Project Management, Full Stack Development, AWS Cloud Solutions, Java Development, QA/Testing). Navigation uses a `page` state in App.tsx. Services overview page lists all 6 service cards with "Learn More" links.
 
 ## Requested Changes (Diff)
 
 ### Add
-- `src/frontend/src/components/ServicesPage.tsx`: Full dedicated Services landing page with:
-  1. Hero section — bold headline, subheadline, CTA button ("Get a Free Consultation")
-  2. Services overview grid — 5 service cards (Cybersecurity, Project Management, Full Stack Dev, AWS Cloud, Java Development) with icons, descriptions, hover lift
-  3. Deep-dive sections — one detailed section per service with bullet capabilities, use cases, and a side icon/visual
-  4. Technology stack badges section — logos/tags for key tech used
-  5. Process / How We Work section — 5-step flow (Analyze → Plan → Build → Secure → Deploy)
-  6. Testimonials / Client Success strip (placeholder stats: 500+ projects, 15+ years, 100+ clients, 24/7 support)
-  7. CTA banner — "Ready to Get Started? Contact Us Today"
+- New `AIServicesPage.tsx` component — a full dedicated landing page for "AI & Automation Services"
+- Page sections:
+  1. Hero — "Intelligent Automation for the Modern Enterprise" with trust badges and dual CTAs
+  2. 6 Capability cards — AI Consulting & Strategy, Machine Learning Development, NLP & Conversational AI, Process Automation (RPA), Predictive Analytics, AI Integration & APIs
+  3. Tech stack — Python, TensorFlow, PyTorch, OpenAI, LangChain, Hugging Face, Azure AI, AWS SageMaker, Apache Spark, Power BI
+  4. 5-Step Process — Discovery & Assessment → AI Strategy → Model Development → Integration & Testing → Monitoring & Optimization
+  5. CTA banner with consultation button and phone number
+- New "AI & Automation" card added to ServicesPage.tsx with "Learn More" button
+- New nav entry in desktop + mobile header (Services dropdown or added to Services page access)
+- Add `"aiservices"` page type to App.tsx page union and conditional rendering
 
 ### Modify
-- `App.tsx`: Extend page state to `"home" | "about" | "services"`, add ServicesPage render branch, pass setPage
-- `App.tsx` Header / NAV_LINKS: "Services" nav item triggers `setPage("services")` instead of anchor scroll
+- `App.tsx`: Add `"aiservices"` to page union type, import AIServicesPage, add conditional render
+- `ServicesPage.tsx`: Add AI & Automation as a 7th service card
 
 ### Remove
-- Nothing removed
+- Nothing
 
 ## Implementation Plan
-1. Create ServicesPage.tsx with all sections above, matching existing brand colors (#0A3D62 navy, #1ABC9C teal), Inter font, fade-in-up animations
-2. Update App.tsx page state type to include "services"
-3. Add ServicesPage import and render branch in App
-4. Update Header so clicking "Services" nav item calls setPage("services") and clicking "Home" / logo returns to home
-5. Validate and deploy
+1. Create `src/frontend/src/components/AIServicesPage.tsx` with hero, capability cards, tech stack, process steps, and CTA
+2. Update `App.tsx` — import AIServicesPage, add `"aiservices"` to type union, add conditional render
+3. Update `ServicesPage.tsx` — add AI & Automation card with setPage("aiservices") on Learn More

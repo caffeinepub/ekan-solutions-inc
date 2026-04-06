@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   BarChart3,
+  Brain,
   CheckCircle2,
   ClipboardList,
   Cloud,
@@ -30,7 +31,8 @@ type PageType =
   | "fullstack"
   | "awscloud"
   | "javadevelopment"
-  | "qatesting";
+  | "qatesting"
+  | "aiservices";
 
 interface ServicesPageProps {
   setPage: (p: PageType) => void;
@@ -102,6 +104,14 @@ const SERVICES_OVERVIEW = [
     color: "#1ABC9C",
     anchor: "#qatesting",
     page: "qatesting" as PageType,
+  },
+  {
+    icon: Brain,
+    title: "AI & Automation",
+    desc: "Leverage machine learning, NLP, and intelligent automation to streamline operations and unlock new business insights.",
+    color: "#0A3D62",
+    anchor: "#aiservices",
+    page: "aiservices" as PageType,
   },
 ];
 

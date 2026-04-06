@@ -1,3 +1,4 @@
+import AIServicesPage from "@/components/AIServicesPage";
 import AWSCloudPage from "@/components/AWSCloudPage";
 import AboutPage from "@/components/AboutPage";
 import CybersecurityPage from "@/components/CybersecurityPage";
@@ -278,7 +279,8 @@ function Header({
       | "fullstack"
       | "awscloud"
       | "javadevelopment"
-      | "qatesting",
+      | "qatesting"
+      | "aiservices",
   ) => void;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -1492,6 +1494,7 @@ export default function App() {
     | "awscloud"
     | "javadevelopment"
     | "qatesting"
+    | "aiservices"
   >("home");
   useScrollAnimation();
 
@@ -1517,6 +1520,8 @@ export default function App() {
           <JavaDevelopmentPage setPage={setPage} />
         ) : page === "qatesting" ? (
           <QATestingPage setPage={setPage} />
+        ) : page === "aiservices" ? (
+          <AIServicesPage setPage={setPage} />
         ) : (
           <>
             <HeroSection />
