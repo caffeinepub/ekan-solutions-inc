@@ -186,6 +186,34 @@ const SERVICE_DETAILS = [
       "JVM performance tuning & code reviews",
     ],
   },
+  {
+    id: "qatesting",
+    icon: CheckCircle2,
+    color: "#1ABC9C",
+    title: "Flawless Software, Every Release",
+    body: "Our QA engineers embed quality at every stage of the development lifecycle — from requirements review to post-production monitoring — so defects never reach your users.",
+    bullets: [
+      "Manual & exploratory testing for complex user flows",
+      "Automated regression suites (Selenium, Cypress, Playwright)",
+      "Performance & load testing (JMeter, Gatling)",
+      "Security testing & OWASP vulnerability scanning",
+      "API testing & contract validation (Postman, REST Assured)",
+    ],
+  },
+  {
+    id: "aiservices",
+    icon: Brain,
+    color: "#0A3D62",
+    title: "Intelligent Automation for the Modern Enterprise",
+    body: "We help organizations harness the power of AI and machine learning to automate complex workflows, surface predictive insights, and build smarter products — from proof-of-concept to full production deployment.",
+    bullets: [
+      "Machine learning model development & deployment",
+      "Natural language processing & conversational AI",
+      "Robotic process automation (RPA) & intelligent workflows",
+      "Predictive analytics & data-driven decision making",
+      "AI integration with existing enterprise systems",
+    ],
+  },
 ];
 
 const TECH_STACK = [
